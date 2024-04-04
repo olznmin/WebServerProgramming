@@ -5,17 +5,17 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>¸íÇÔ°Ë»ö</title>
+<title>ëª…í•¨ê²€ìƒ‰</title>
 </head>
 <body>
 
 <form action="search.jsp" method="post">
-	<input type="text" name="keyword" placeholder="°Ë»ö¾î ÀÔ·Â">
-	<input type="submit" value="°Ë»ö">
+	<input type="text" name="keyword" placeholder="ê²€ìƒ‰ì–´ ìž…ë ¥">
+	<input type="submit" value="ê²€ìƒ‰">
 </form>
 
 <%
-//OracleXE ¿¬°á 
+//OracleXE ì—°ê²° 
 
 Connection conn = null; 
 
@@ -23,49 +23,56 @@ String url = "jdbc:oracle:thin:@localhost:1521/xe";
 String user = "system";
 String password = "796796";
 
-Class.forName("oracle.jdbc.driver.OracleDriver");
+try {
+    Class.forName("oracle.jdbc.driver.OracleDriver");
+    conn = DriverManager.getConnection(url, user, password);
+    
+    //ê²€ìƒ‰ì–´ì²˜ë¦¬
+    String keyword = request.getParameter("keyword"); // 'Keyword'ë¥¼ 'keyword'ë¡œ ìˆ˜ì •
 
-//°Ë»ö¾îÃ³¸®
-String keyword = request.getParameter("Keyword");
+    //SQL ì¿¼ë¦¬ ìž‘ì„± 
+    String sql ="SELECT * FROM namecard ";
+    if(keyword != null && !keyword.isEmpty()){
+        sql += "WHERE name LIKE '%" + keyword + "%' OR telno LIKE '%"+
+                keyword +"%' OR mail LIKE '%" + keyword + "%'";
+    }
 
-//SQL Äõ¸® ÀÛ¼º 
-String sql ="SELECT * FROM namecard";
-if(keyword != null && !keyword.isEmpty()){
-	sql += "WHERE name LIKE '%" + keyword + "%' OR telno LIKE '%"+
-			keyword +"%' OR mail LIKE '%" + keyword + "%'";
-}
+    //Statement ìƒì„± ë° ì‹¤í–‰
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(sql);
 
-//Statement »ý¼º ¹× ½ÇÇà
-Statement stmt = conn.createStatement();
-ResultSet rs = stmt.executeQuery(sql);
-
-//°Ë»ö°á°ú Ãâ·Â 
-%>
-<table border="1">
-	<tr>
-		<th>¼ø¹ø</th>
-		<th>ÀÌ¸§</th>
-		<th>Æù¹øÈ£</th>
-		<th>¸ÞÀÏ</th>
-	</tr>
-	<%
-	int count =1;
-	while (rs.next()){
-	%>
-	<tr>
-		<td><%= count++ %></td>
-		<td><%= rs.getString("name") %></td>
-		<td><%= rs.getString("telno") %></td>
-		<td><%= rs.getString("mail") %></td>
-	</tr>
-	<% 
-	}
-	rs.close();
-	stmt.close();
-	conn.close();
-	%>
-	
-</table>
+    //ê²€ìƒ‰ê²°ê³¼ ì¶œë ¥ 
+    %>
+    <table border="1">
+        <tr>
+            <th>ìˆœë²ˆ</th>
+            <th>ì´ë¦„</th>
+            <th>í°ë²ˆí˜¸</th>
+            <th>ë©”ì¼</th>
+        </tr>
+        <%
+        int count =1;
+        while (rs.next()){
+        %>
+        <tr>
+            <td><%= count++ %></td>
+            <td><%= rs.getString("name") %></td>
+            <td><%= rs.getString("telno") %></td>
+            <td><%= rs.getString("mail") %></td>
+        </tr>
+        <% 
+        }
+        rs.close();
+        stmt.close();
+        
+    } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (conn != null) try { conn.close(); } catch(SQLException e) {}
+    }
+    %>
+    
+    </table>
 
 </body>
 </html>
