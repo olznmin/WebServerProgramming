@@ -10,22 +10,22 @@
 	<div align="center">
 	<table border="1" width="550" height="300">
 		<tr height="20%">
-			<th width="15%">ÀÌ¸§</th>
-			<th width="20%">Æù¹øÈ£</th>
-			<th width="25%">ÀÌ¸ÞÀÏ</th>
-			<th width="40%">ÁÖ¼Ò</th>
+			<th width="15%">ì´ë¦„</th>
+			<th width="20%">í°ë²ˆí˜¸</th>
+			<th width="25%">ì´ë©”ì¼</th>
+			<th width="40%">ì£¼ì†Œ</th>
 		</tr>
 		<tr align="center">
-			<td>ÀÌÀç¹Î</td>
+			<td>ì´ìž¬ë¯¼</td>
 			<td>010-9300-8961</td>
 			<td>woals796796@gmail.com</td>
-			<td>°æ»ó³²µµ ¾ç»ê½Ã È¸Çö 1±æ 48 </td>
+			<td>ê²½ìƒë‚¨ë„ ì–‘ì‚°ì‹œ íšŒí˜„ 1ê¸¸ 48 </td>
 		</tr>
 		<tr align ="center">
-			<td>È«±æµ¿</td>
+			<td>í™ê¸¸ë™</td>
 			<td>010-1111-1111</td>
 			<td>abcd1234@gmail.com</td>
-			<td>¼­¿ï½Ã °­³²±¸ ¹ÝÆ÷´ë·Î </td>
+			<td>ì„œìš¸ì‹œ ê°•ë‚¨êµ¬ ë°˜í¬ëŒ€ë¡œ </td>
 		</tr>
 	</table>
 	</div>
